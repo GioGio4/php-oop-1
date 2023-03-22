@@ -18,6 +18,22 @@ Facciamo attenzione all'organizzazione del codice, suddividendolo in appositi fi
 
 <?php
 
+
+class Actor
+{
+    // Variabili istanza (classe actor) provvisorio 
+    public $actor1;
+    public $actor2;
+    public $actor3;
+
+    public function __construct($_actor1, $_actor2, $_actor3)
+    {
+        $this->actor1 = $_actor1;
+        $this->actor2 = $_actor2;
+        $this->actor3 = $_actor3;
+    }
+}
+
 // Definire una classe Movie
 class Movie
 {
@@ -25,26 +41,35 @@ class Movie
     public $title;
     public $year;
     public $genres;
+    // Variabile Attori 
+    public $actor;
 
-    //  Funzione construct 
-    public function __construct($_title, $_year, $_genres)
+    //  Funzione construct - Aggiunta Actor che viene ripresa dalla classe Actor
+    public function __construct($_title, $_year, $_genres, Actor $_actor)
     {
         $this->title = $_title;
         $this->year = $_year;
         $this->genres = $_genres;
+        $this->actor = $_actor;
     }
 
-    // Metodo movie Detail -> stampa una stringa con tutti i dati dell'oggetto Movie selezionato 
+    // Metodo movie Detail -> stampa una stringa con tutti i dati dell'oggetto Movie selezionato
+    // Aggiunto un Foreach che va ad iterare l'oggetto Actor e stampa ogni attore  
     public function movieDetail()
     {
-        echo "TITOLO: $this->title ANNO: $this->year GENERE:$this->genres<br />";
+        echo "TITOLO: $this->title ANNO: $this->year GENERE:$this->genres ATTORI: ";
+        foreach ($this->actor as $actor) {
+            echo $actor . ", ";
+        }
+        echo "<br />";
     }
 }
 
 // Oggetti istanziati 
-$movie_1 = new Movie("Revenant", "2015", "Drammatico");
-$movie_2 = new Movie("Django Unchained", "2012", "Western");
-$movie_3 = new Movie("Parasite", "2019", "Drammatico");
+$movie_1 = new Movie("Revenant", "2015", "Drammatico", new Actor("Leonardo DiCaprio", "Tom Hardy", "Domhnall Gleeson"));
+$movie_2 = new Movie("Django Unchained", "2012", "Western", new Actor("Jamie Foxx", "Christoph Waltz", "Leonardo DiCaprio"));
+$movie_3 = new Movie("Parasite", "2019", "Drammatico", new Actor("Song Kang-ho", "Lee Sun-kyun", "Cho Yeo-jeong"));
+
 
 //Associa il metodo all'oggetto (In questo caso trasforma in stringa e stampa l'oggetto Movie selezionato )
 $movie_1->movieDetail();
@@ -52,7 +77,7 @@ $movie_2->movieDetail();
 $movie_3->movieDetail();
 
 
-// var_dump($movie_1);
+
 // var_dump($movie_1);
 // var_dump($movie_1);
 
