@@ -18,4 +18,43 @@ Facciamo attenzione all'organizzazione del codice, suddividendolo in appositi fi
 
 <?php
 
+// Definire una classe Movie
+class Movie
+{
+    // Variabili di istanza 
+    public $title;
+    public $year;
+    public $genres;
+
+    //  Funzione construct 
+    public function __construct($_title, $_year, $_genres)
+    {
+        $this->title = $_title;
+        $this->year = $_year;
+        $this->genres = $_genres;
+    }
+
+    // Metodo movie Detail -> stampa una stringa con tutti i dati dell'oggetto Movie selezionato 
+    public function movieDetail()
+    {
+        echo "TITOLO: $this->title ANNO: $this->year GENERE:$this->genres<br />";
+    }
+}
+
+// Oggetti istanziati 
+$movie_1 = new Movie("Revenant", "2015", "Drammatico");
+$movie_2 = new Movie("Django Unchained", "2012", "Western");
+$movie_3 = new Movie("Parasite", "2019", "Drammatico");
+
+//Associa il metodo all'oggetto (In questo caso trasforma in stringa e stampa l'oggetto Movie selezionato )
+$movie_1->movieDetail();
+$movie_2->movieDetail();
+$movie_3->movieDetail();
+
+
+// var_dump($movie_1);
+// var_dump($movie_1);
+// var_dump($movie_1);
+
+
 ?>
